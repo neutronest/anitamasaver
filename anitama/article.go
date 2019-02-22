@@ -5,8 +5,9 @@ type ArticleMetaData struct {
 	Title string
 	SubTitle string
 	Author string
-	Type string
+	Category string
 	Date string
+	Url string
 }
 
 type Article struct {
