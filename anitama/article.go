@@ -2,6 +2,7 @@ package anitama
 
 type ArticleMetaData struct {
 	
+	Id	string
 	Title string
 	SubTitle string
 	Author string
