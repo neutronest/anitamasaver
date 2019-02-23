@@ -26,4 +26,5 @@ jobs:
       - run: ls
       - run: go get github.com/anaskhan96/soup
       - run: go get github.com/bradfitz/slice
-      - run: go build
+      - run: cd metadata; go build
+      - run: cd -; cd articledata; go build
