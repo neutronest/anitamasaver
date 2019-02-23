@@ -3,6 +3,9 @@ package main
 import (
     "fmt"
     "os"
+    "strconv"
+    "sync"
+    // "time"
     "encoding/json"
 	"github.com/anaskhan96/soup"
     "github.com/neutronest/anitamasaver/anitama"
@@ -34,6 +37,7 @@ func getArticleMetadatasFromChannel(channelUrl string) []anitama.ArticleMetaData
         }
         author := infoParagraph.Find("span", "class", "author")
         category := infoParagraph.Find("span", "class", "channel")
+        publishTime := infoParagraph.Find("span", "class", "time")
 
         if title.Error != nil {
             continue
@@ -44,10 +48,14 @@ func getArticleMetadatasFromChannel(channelUrl string) []anitama.ArticleMetaData
         if author.Error != nil {
             continue
         }
+        if publishTime.Error != nil {
+            continue
+        }
         // fmt.Println(title.Text())
         // fmt.Println(subtitle.Text())
         // fmt.Println(author.Text())
         // fmt.Println(category.Text())
+        // fmt.Println(publishTime.Text())
         // fmt.Println(anitama.ANITAMA_ROOT_URL + articleLink)
         // fmt.Println()
 
@@ -56,7 +64,7 @@ func getArticleMetadatasFromChannel(channelUrl string) []anitama.ArticleMetaData
             SubTitle: subtitle.Text(),
             Author: author.Text(),
             Category: category.Text(),
-            Date: "",
+            Date: publishTime.Text(),
             Url: anitama.ANITAMA_ROOT_URL + articleLink}
         articleMetadatas = append(articleMetadatas, articleMetadata)
         
@@ -67,18 +75,29 @@ func getArticleMetadatasFromChannel(channelUrl string) []anitama.ArticleMetaData
 func main(){
 
     articleMetadataChan := make(chan anitama.ArticleMetaData, 100)
-    for idx := 1; idx <= 10; idx++ {
+    // anitama.CHANNEL_MAX_PAGINATION
+    paginationNum := 10
+    var wg sync.WaitGroup
+    wg.Add(paginationNum)
+    for idx := 1; idx <= paginationNum; idx++ {
 
         go func(channelPageId int) {
-            channelUrl := anitama.ANITAMA_CHANNEL_URL + "/all/" + string(channelPageId)
+            defer wg.Done()
+            channelUrl := anitama.ANITAMA_CHANNEL_URL + "/all/" + strconv.Itoa(channelPageId)
+            fmt.Println("\n\n=====ChannelPageId", channelPageId)
             articleMetadatas := getArticleMetadatasFromChannel(channelUrl)
             for _, articleMetadata := range articleMetadatas {
                 articleMetadataChan <- articleMetadata
             }
+            fmt.Println("ChannelPageId ",channelPageId, "ended. ")
         }(idx)
+        // if idx % 10 == 0 {
+        //     time.Sleep(1000 * time.Millisecond)
+        // }
+        
     }
-
-    for {
+    
+    for  {
         select {
         case articleMetadata := <-articleMetadataChan:
             metadataJson, err := json.Marshal(articleMetadata)
@@ -88,6 +107,9 @@ func main(){
             fmt.Println(string(metadataJson))
         }
     }
+    wg.Wait()
+    
+    
 
     
  }
