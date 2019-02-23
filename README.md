@@ -4,7 +4,7 @@ Anitama is one of the professional ACG criticism websites in China. Recently, we
 
 ## Roadmap
 
-* [ ] Save the article metadatas from channel page as json (Title, subtitle, author, categories)
+* [*] Save the article metadatas from channel page as json (Title, subtitle, author, categories)
 * [ ] Save each article raw-html-data as json
 * [ ] Save the media data (mainly images) for each article and maintain the image-article mapping
 * [ ] Parse the raw html article data for better represent rendering
