@@ -25,4 +25,5 @@ jobs:
       - run: pwd
       - run: ls
       - run: go get github.com/anaskhan96/soup
+      - run: go get github.com/bradfitz/slice
       - run: go build
