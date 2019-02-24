@@ -7,6 +7,7 @@ Anitama is one of the professional ACG criticism websites in China. Recently, we
 * [x] Save the article metadatas from channel page as json (Title, subtitle, author, categories)
 * [x] Save each article raw-html-data as json (sync)
 * [ ] Save article data asynchronously
+* [ ] save the series article data
 * [ ] Save the media data (mainly images) for each article and maintain the image-article mapping
 * [ ] Parse the raw html article data for better represent rendering
 
@@ -21,7 +22,7 @@ sh run.sh
 
 This scipt will install dependencies and begin the saving task automatically.Each article metadata and content will be downloaded as json file in output/ folder. Notice that now we support sync download style only and it will cost you several hours. Asynchronous task is in the plan.
 
-The Image data and series article saving task is still to be down.
+The Image data and series article saving task is still to be done.
 
 ## Other
 
