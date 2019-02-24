@@ -21,5 +21,5 @@ cd ../metadata; ./metadata
 echo "Done.. begin to saving articles.."
 echo "This step will cost few hours.. PLEASE STAND BY..."
 cd ../articledata; ./articledata
-echo "La mort de l'auteur.."
+echo "DSSQ.."
 
