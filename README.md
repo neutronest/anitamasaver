@@ -26,6 +26,3 @@ The Image data and series article saving task is still to be down.
 ## Other
 
 If you cannot install libraries by the "golang/x/net" failed mistake, you can download this lib manually by "git clone https://github.com/golang/net.git" in the correct path. It depends on your $GOPATH.
-
-At last,
-DSSQ
