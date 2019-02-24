@@ -90,6 +90,7 @@ func aritlceMetaDataToJsonPipeline(
 
 func main(){
 
+    articleMetaDataFile := "../output/article_metadata.json"
     articleMetadataChan := make(chan anitama.ArticleMetaData, 1000)
     // anitama.CHANNEL_MAX_PAGINATION
     paginationNum := anitama.CHANNEL_MAX_PAGINATION
@@ -126,12 +127,10 @@ func main(){
     }
 
     metadataJson, err := json.Marshal(metadatas)
-    fmt.Println("json", metadataJson)
-    fmt.Println("data", metadatas)
     if err != nil {
     }
     // for _, jsonData := range articleMetadataJson {
-    f, err := os.OpenFile("./article_metadata.json", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0755)
+    f, err := os.OpenFile(articleMetaDataFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0755)
     if err != nil {
         fmt.Println(err)
     }
