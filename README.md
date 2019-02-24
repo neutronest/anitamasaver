@@ -5,6 +5,27 @@ Anitama is one of the professional ACG criticism websites in China. Recently, we
 ## Roadmap
 
 * [x] Save the article metadatas from channel page as json (Title, subtitle, author, categories)
-* [ ] Save each article raw-html-data as json
+* [x] Save each article raw-html-data as json (sync)
+* [ ] Save article data asynchronously
 * [ ] Save the media data (mainly images) for each article and maintain the image-article mapping
 * [ ] Parse the raw html article data for better represent rendering
+
+## Install & Run
+
+First make sure that you have prepare the golang environment.
+
+Then just:
+```
+sh run.sh
+```
+
+This scipt will install dependencies and begin the saving task automatically.Each article metadata and content will be downloaded as json file in output/ folder. Notice that now we support sync download style only and it will cost you several hours. Asynchronous task is in the plan.
+
+The Image data and series article saving task is still to be down.
+
+## Other
+
+If you cannot install libraries by the "golang/x/net" failed mistake, you can download this lib manually by "git clone https://github.com/golang/net.git" in the correct path. It depends on your $GOPATH.
+
+At last,
+La mort de l'auteur
