@@ -1,5 +1,13 @@
 # AnitamaSaver
 
+## Update
+
+Today we are glad to hear that the Anitama will keep serving. Thanks everyoue.
+
+As the situation, the project will be deprecated. Any developed features later can only be regard as Golang practice. 
+
+---
+
 Anitama is one of the professional ACG criticism websites in China. Recently, we were regreted to hear that the website will stop operations for some reasons, and it will be closed therefore we cannot visit the articles any more. In order to store the articles, the knowledge and thoughts for both authors and prudent readers, we build AnitamaSaver, a temporal project to save all the historical articles automatically.
 
 ## Roadmap
